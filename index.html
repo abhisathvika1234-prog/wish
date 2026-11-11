@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf7f2">
+  <title>A Small Message For You ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #fcfaf6;
+      --cream: #f6f0e6;
+      --wine: #6e1d2c;
+      --wine-dark: #45101a;
+      --rose: #b56a79;
+      --gold: #c5a059;
+      --gold-light: #e8d3a2;
+      --ink: #341b21;
+      --muted: #754b53;
+      --line: rgba(181, 106, 121, 0.16);
+      --border: rgba(197, 160, 89, 0.45);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      background: radial-gradient(
+        ellipse at 50% 20%,
+        #ffffff 0%,
+        #fbf8f3 55%,
+        #f4eee4 100%
+      );
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .screen {
+      display: none;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      padding: 35px 18px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .screen.active {
+      display: flex;
+      animation: reveal 0.8s ease both;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .neat-card {
+      width: min(650px, 94vw);
+      padding: clamp(42px, 7vw, 70px)
+               clamp(24px, 6vw, 60px);
+      text-align: center;
+      background: var(--ivory);
+      border: 1px solid var(--border);
+      outline: 1px solid rgba(197,160,89,0.2);
+      outline-offset: 5px;
+      border-radius: 12px;
+      box-shadow:
+        0 20px 48px rgba(90,20,35,0.08),
+        0 4px 14px rgba(0,0,0,0.03);
+    }
+
+    .botanical-crest {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .botanical-icon {
+      width: 110px;
+      height: 30px;
+      color: var(--gold);
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font: 500 11px/1.5 "Playfair Display", serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1, h2 {
+      font-weight: 400;
+      color: var(--wine-dark);
+    }
+
+    h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.2;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      margin: 8px 0 15px;
+    }
+
+    h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(36px, 6vw, 52px);
+      line-height: 1.2;
+      margin: 8px 0 15px;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 2.9vw, 21px);
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
+      margin: 10px auto 30px;
+      max-width: 480px;
+    }
+
+    .neat-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      max-width: 100%;
+      background: linear-gradient(135deg,#7c2232,#5a1421);
+      color: #fdfbf7;
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      padding: 15px 34px;
+      cursor: pointer;
+      text-align: center;
+      font: 500 12px/1.4 "Playfair Display", serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(90,20,33,0.22);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .neat-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(90,20,33,0.28);
+    }
+
+    .neat-btn:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
+
+    .small-note {
+      color: var(--gold);
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-top: 25px;
+      line-height: 1.5;
+    }
+
+    /* COUNTDOWN TIMER */
+
+    .countdown-wrap {
+      max-width: 440px;
+      margin: 25px auto 16px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .time-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 5px 12px;
+      min-width: 0;
+      box-shadow: 0 4px 12px rgba(85,20,32,0.04);
+    }
+
+    .time-box strong {
+      display: block;
+      color: var(--wine);
+      font: 600 clamp(22px, 5vw, 32px)
+            "Playfair Display", serif;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-box span {
+      display: block;
+      color: var(--gold);
+      font: 500 9px "Playfair Display", serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .target-date {
+      margin-top: 17px;
+      color: var(--wine);
+      font: 500 13px/1.7 "Playfair Display", serif;
+      letter-spacing: 0.05em;
+    }
+
+    /* 3D INVITATION COVER */
+
+    .envelope-scene {
+      width: min(390px, 90vw);
+      margin: 25px auto;
+      perspective: 1200px;
+    }
+
+    .envelope {
+      height: 250px;
+      position: relative;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      outline: none;
+    }
+
+    .cover-inside {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: linear-gradient(135deg,#f7f1e6,#eee4d3);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 50px rgba(70,15,26,0.14);
+    }
+
+    .inserted-letter {
+      position: absolute;
+      left: 7%;
+      top: 16px;
+      width: 86%;
+      height: 220px;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      color: var(--wine);
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 21px,
+          var(--line) 21px,
+          var(--line) 22px
+        ),
+        #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(80,20,30,0.08);
+      z-index: 1;
+      transition:
+        transform 1.2s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.8s;
+    }
+
+    .inserted-letter strong {
+      font: 28px/1.1 "Great Vibes", cursive;
+    }
+
+    .inserted-letter small {
+      font: 500 9px "Playfair Display", serif;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .cover-front {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      transition: transform 1.25s cubic-bezier(0.16,1,0.3,1);
+      background: linear-gradient(135deg,#741e2d,#52121d);
+      border: 1px solid var(--gold);
+      box-shadow:
+        inset 0 0 0 4px rgba(255,255,255,0.04),
+        0 12px 28px rgba(50,10,18,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      z-index: 3;
+      transform-style: preserve-3d;
+    }
+
+    .cover-front::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(232,211,162,0.5);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+    .cover-design {
+      transform: translateZ(2px);
+    }
+
+    .cover-kicker {
+      display: block;
+      color: var(--gold-light);
+      font: 500 9px "Playfair Display", serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .cover-title {
+      display: block;
+      color: white;
+      font: 38px/1.15 "Great Vibes", cursive;
+    }
+
+    .cover-date {
+      display: block;
+      color: var(--gold-light);
+      font: 500 10px "Playfair Display", serif;
+      letter-spacing: 0.18em;
+      margin-top: 12px;
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      transform: translateY(-50%) translateZ(8px);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 35% 30%,
+        #8e2335,
+        #5a1421 65%,
+        #380710
+      );
+      border: 1.5px solid var(--gold-light);
+      box-shadow: 0 4px 12px rgba(40,5,12,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-size: 20px;
+      z-index: 5;
+      transition: opacity 0.4s;
+    }
+
+    .envelope.open .cover-front {
+      transform: rotateY(-130deg);
+    }
+
+    .envelope.open .inserted-letter {
+      transform: translateY(-75px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(70,15,26,0.18);
+    }
+
+    .envelope.open .wax-seal {
+      opacity: 0.15;
+    }
+
+    .envelope-hint {
+      color: var(--muted);
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    /* CANVA-STYLE LETTER */
+
+    .canva-notes-container {
+      width: min(780px, 94vw);
+      margin: auto;
+    }
+
+    .canva-notes-paper {
+      width: 100%;
+      max-height: calc(100dvh - 45px);
+      overflow-y: auto;
+      position: relative;
+      padding:
+        clamp(50px, 8vw, 75px)
+        clamp(30px, 8vw, 75px)
+        55px;
+
+      background-color: var(--ivory);
+      background-image:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 37px,
+          var(--line) 37px,
+          var(--line) 38px
+        ),
+        linear-gradient(
+          to right,
+          transparent 0px,
+          transparent clamp(45px,6vw,62px),
+          rgba(165,45,68,0.28)
+            clamp(45px,6vw,62px),
+          rgba(165,45,68,0.28)
+            calc(clamp(45px,6vw,62px) + 1px),
+          transparent
+            calc(clamp(45px,6vw,62px) + 1px)
+        );
+
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      outline: 1px solid rgba(197,160,89,0.18);
+      outline-offset: 5px;
+      box-shadow: 0 20px 48px rgba(90,20,35,0.08);
+      scrollbar-width: thin;
+      scrollbar-color: var(--rose) var(--ivory);
+    }
+
+    .notes-header-emblem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .notes-emblem-line {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .notes-emblem-heart {
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    .letter-top-label {
+      text-align: center;
+      color: var(--gold);
+      font: 500 10px/1.6 "Playfair Display", serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .canva-notes-paper h2 {
+      text-align: center;
+      font-size: clamp(36px, 7vw, 54px);
+      margin: 8px 0 25px;
+    }
+
+    .canva-notes-paper h2::after {
+      content: "✦   ❀   ✦";
+      display: block;
+      margin-top: 8px;
+      color: var(--gold);
+      font: 13px "Cormorant Garamond", serif;
+      letter-spacing: 0.2em;
+    }
+
+    .letter-body {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(19px, 2.6vw, 22.5px);
+      line-height: 38px;
+      color: var(--ink);
+      text-align: left;
+      padding-left: clamp(24px,3.8vw,36px);
+    }
+
+    .letter-body p {
+      margin-bottom: 38px;
+    }
+
+    .letter-body p:first-child {
+      color: var(--wine);
+      font-weight: 600;
+    }
+
+    .closing-quote {
+      text-align: center;
+      margin: 35px auto 15px;
+      max-width: 580px;
+      padding: 18px 20px;
+      color: var(--wine);
+      background: rgba(255,255,255,0.7);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 4px;
+      font: italic 500 clamp(19px,2.6vw,22px)/1.5
+            "Cormorant Garamond", serif;
+    }
+
+    .signature {
+      text-align: center;
+      color: var(--wine);
+      font: clamp(36px,6vw,48px) "Great Vibes", cursive;
+      margin: 25px 0 15px;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 25px auto 0;
+      background: transparent;
+      color: var(--wine);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 12px 22px;
+      cursor: pointer;
+      font: 500 11px "Playfair Display", serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .back-btn:hover {
+      background: white;
+      border-color: var(--gold);
+    }
+
+    /* FALLING ROSE PETALS */
+
+    .petal {
+      position: fixed;
+      top: -30px;
+      z-index: 99;
+      pointer-events: none;
+      animation: gentleFall linear forwards;
+      opacity: 0.75;
+    }
+
+    .petal svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes gentleFall {
+      from {
+        transform: translate3d(0,0,0) rotate(0deg);
+        opacity: 0.75;
+      }
+      to {
+        transform: translate3d(var(--drift),106vh,0)
+                   rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* MOBILE RESPONSIVE */
+
+    @media (max-width: 600px) {
+      .screen {
+        padding: 22px 14px;
+      }
+
+      .neat-card {
+        width: 100%;
+        padding: 38px 20px 34px;
+      }
+
+      h1 {
+        font-size: clamp(30px,8vw,38px);
+        line-height: 1.25;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      h2 {
+        font-size: clamp(34px,9vw,44px);
+      }
+
+      .eyebrow {
+        font-size: 9px;
+        letter-spacing: 0.13em;
+      }
+
+      .subtitle {
+        font-size: 17px;
+        margin-bottom: 25px;
+      }
+
+      .neat-btn {
+        font-size: 10px;
+        letter-spacing: 0.07em;
+        padding: 14px 22px;
+      }
+
+      .countdown {
+        gap: 7px;
+      }
+
+      .time-box {
+        padding: 12px 3px 10px;
+      }
+
+      .time-box strong {
+        font-size: clamp(19px,6vw,26px);
+      }
+
+      .time-box span {
+        font-size: 8px;
+        letter-spacing: 0.02em;
+      }
+
+      .target-date {
+        font-size: 11px;
+      }
+
+      .envelope-scene {
+        width: min(310px,85vw);
+      }
+
+      .envelope {
+        height: 215px;
+      }
+
+      .inserted-letter {
+        height: 185px;
+      }
+
+      .cover-title {
+        font-size: 32px;
+      }
+
+      .wax-seal {
+        width: 40px;
+        height: 40px;
+        right: -12px;
+      }
+
+      .canva-notes-container {
+        width: 100%;
+      }
+
+      .canva-notes-paper {
+        max-height: calc(100dvh - 30px);
+        padding: 40px 20px;
+      }
+
+      .canva-notes-paper h2 {
+        font-size: 38px;
+      }
+
+      .letter-body {
+        padding-left: 18px;
+        font-size: 18.5px;
+        line-height: 35px;
+      }
+
+      .letter-body p {
+        margin-bottom: 35px;
+      }
+
+      .closing-quote {
+        font-size: 19px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .neat-card {
+        padding: 32px 14px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+
+      .envelope-scene {
+        width: min(270px,82vw);
+      }
+
+      .time-box span {
+        font-size: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <!-- LANDING PAGE -->
+    <section id="landing" class="screen active">
+      <div class="neat-card">
+
+        <div class="botanical-crest" aria-hidden="true">
+          <svg class="botanical-icon"
+               viewBox="0 0 120 30"
+               fill="none"
+               stroke="currentColor">
+            <path d="M10,15 Q35,5 60,15 Q85,25 110,15"
+                  stroke-width="1.2"/>
+            <circle cx="60" cy="15" r="2.5"
+                    fill="currentColor"/>
+            <path d="M30,12 Q35,6 40,11"/>
+            <path d="M48,15 Q54,8 58,14"/>
+            <path d="M72,16 Q78,22 84,17"/>
+            <path d="M90,14 Q95,20 100,15"/>
+          </svg>
+        </div>
+
+        <p class="eyebrow">
+          A little something, just for you
+        </p>
+
+        <h1>A Small Message For You</h1>
+
+        <p class="subtitle">
+          Something special has been prepared for you...
+        </p>
+
+        <button class="neat-btn" id="startButton">
+          OPEN YOUR INVITATION ♡
+        </button>
+
+        <p class="small-note">
+          ✧ Crafted with love & timeless elegance ✧
+        </p>
+
+      </div>
+    </section>
+
+    <!-- COUNTDOWN PAGE -->
+    <section id="countdownScreen" class="screen">
+      <div class="neat-card">
+
+        <div class="botanical-crest" aria-hidden="true">
+          <svg class="botanical-icon"
+               viewBox="0 0 120 30"
+               fill="none"
+               stroke="currentColor">
+            <path d="M10,15 Q35,5 60,15 Q85,25 110,15"
+                  stroke-width="1.2"/>
+            <circle cx="60" cy="15" r="2.5"
+                    fill="currentColor"/>
+          </svg>
+        </div>
+
+        <p class="eyebrow">
+          A moment made just for you
+        </p>
+
+        <h2>A little wish is waiting for you ♡</h2>
+
+        <p class="subtitle">
+          Some moments are worth waiting for...
+        </p>
+
+        <div class="countdown-wrap">
+          <div class="countdown">
+
+            <div class="time-box">
+              <strong id="days">00</strong>
+              <span>Days</span>
+            </div>
+
+            <div class="time-box">
+              <strong id="hours">00</strong>
+              <span>Hours</span>
+            </div>
+
+            <div class="time-box">
+              <strong id="minutes">00</strong>
+              <span>Minutes</span>
+            </div>
+
+            <div class="time-box">
+              <strong id="seconds">00</strong>
+              <span>Seconds</span>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="target-date">
+          11 November 2026 · 11:11 PM · India
+        </p>
+
+        <p class="small-note" id="countdownNote">
+          Your little surprise will open at the right moment ♡
+        </p>
+
+      </div>
+    </section>
+
+    <!-- WISH BOX PAGE -->
+    <section id="wishScreen" class="screen">
+      <div class="neat-card">
+
+        <p class="eyebrow">An exclusive keepsake</p>
+
+        <h2>Your Wish Box ♡</h2>
+
+        <p class="subtitle">
+          A small piece of my heart, wrapped just for you.
+        </p>
+
+        <div class="envelope-scene">
+
+          <div class="envelope"
+               id="envelope"
+               role="button"
+               tabindex="0"
+               aria-label="Open invitation cover">
+
+            <div class="cover-inside"></div>
+
+            <div class="inserted-letter"
+                 aria-hidden="true">
+              <span style="font-size:24px;color:#c5a059">
+                ✦
+              </span>
+
+              <strong>A little note for you</strong>
+
+              <small>Open to read my wish</small>
+
+              <span style="color:#c5a059;font-size:14px">
+                ♡ ❀ ♡
+              </span>
+            </div>
+
+            <div class="cover-front">
+
+              <div class="wax-seal">♥</div>
+
+              <div class="cover-design">
+                <span class="cover-kicker">
+                  A keepsake for you
+                </span>
+
+                <span class="cover-title">
+                  A Wish at 11:11
+                </span>
+
+                <span class="cover-date">
+                  11 · 11 · 2026
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <p class="envelope-hint">
+          Tap the invitation cover to unfold
+          the letter inside ♡
+        </p>
+
+        <button class="neat-btn"
+                id="openWishButton"
+                style="margin-top:14px">
+          OPEN THE COVER ♡
+        </button>
+
+      </div>
+    </section>
+
+    <!-- FINAL LETTER PAGE -->
+    <section id="letterScreen" class="screen">
+
+      <div class="canva-notes-container">
+        <article class="canva-notes-paper">
+
+          <div class="notes-header-emblem"
+               aria-hidden="true">
+            <div class="notes-emblem-line"></div>
+            <span class="notes-emblem-heart">♥</span>
+            <div class="notes-emblem-line"></div>
+          </div>
+
+          <div class="letter-top-label">
+            ❀ A PERSONAL LETTER FOR YOU ❀
+          </div>
+
+          <h2>A Wish at 11:11 ❤️</h2>
+
+          <div class="letter-body">
+
+            <p>
+              At 11:11 on 11/11/2026,
+              I just want to make one wish… ❤️
+            </p>
+
+            <p>
+              I don't know how to explain how special
+              you are to me, but I'm genuinely lucky
+              to have you in my life. You're not just
+              a friend; you're someone whose presence
+              makes my days better and my life a
+              little more beautiful.
+            </p>
+
+            <p>
+              I don't know what the future holds for us,
+              but one thing I truly wish is that we stay
+              like this forever. No matter how much life
+              changes, no matter where we go or how busy
+              we get, I hope we never lose this bond.
+            </p>
+
+            <p>
+              I don't need anything extraordinary.
+              I just want the same friendship,
+              the same care, the same silly conversations,
+              the same understanding, and the same
+              beautiful connection we share today.
+            </p>
+
+            <p>
+              If I could make one wish tonight,
+              it would simply be to have you in
+              my life just like this, always. 🫂❤️
+            </p>
+
+            <p>
+              You're special to me, more than words
+              can explain. Please stay the same,
+              and let's never become strangers. ❤️✨
+            </p>
+
+          </div>
+
+          <div class="closing-quote">
+            Some wishes are not about getting something
+            new; they're about never losing something
+            beautiful that we already have. ❤️
+          </div>
+
+          <div class="signature">
+            Always your friend ♡
+          </div>
+
+          <button class="back-btn" id="replayButton">
+            Replay Your Invitation ↺
+          </button>
+
+        </article>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // LIVE COUNTDOWN ENABLED
+    const DEMO_MODE = false;
+
+    // 11 November 2026 at 11:11 PM IST
+    const targetTime =
+      new Date("2026-11-11T23:11:00+05:30").getTime();
+
+    const screens = [
+      "landing",
+      "countdownScreen",
+      "wishScreen",
+      "letterScreen"
+    ];
+
+    let timerInterval = null;
+    let isOpening = false;
+
+    function showScreen(id) {
+      screens.forEach(screenId => {
+        const screen = document.getElementById(screenId);
+
+        if (screen) {
+          screen.classList.toggle(
+            "active",
+            screenId === id
+          );
+        }
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function updateCountdown() {
+      const remaining = targetTime - Date.now();
+
+      if (remaining <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        document.getElementById("countdownNote")
+          .textContent = "Your moment is here ♡";
+
+        clearInterval(timerInterval);
+        timerInterval = null;
+
+        showScreen("wishScreen");
+        return;
+      }
+
+      const days = Math.floor(
+        remaining / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (remaining / (1000 * 60 * 60)) % 24
+      );
+
+      const minutes = Math.floor(
+        (remaining / (1000 * 60)) % 60
+      );
+
+      const seconds = Math.floor(
+        (remaining / 1000) % 60
+      );
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+    }
+
+    // START INVITATION
+    document.getElementById("startButton")
+      .addEventListener("click", () => {
+
+        clearInterval(timerInterval);
+        timerInterval = null;
+
+        if (DEMO_MODE || Date.now() >= targetTime) {
+          showScreen("wishScreen");
+        } else {
+          showScreen("countdownScreen");
+          updateCountdown();
+
+          timerInterval = setInterval(
+            updateCountdown,
+            1000
+          );
+        }
+      });
+
+    // OPEN 3D COVER
+    function openWishBox() {
+      if (isOpening) return;
+
+      isOpening = true;
+
+      const envelope =
+        document.getElementById("envelope");
+
+      const button =
+        document.getElementById("openWishButton");
+
+      envelope.classList.add("open");
+
+      button.disabled = true;
+      button.textContent = "OPENING YOUR INVITATION...";
+
+      setTimeout(() => {
+        showScreen("letterScreen");
+        isOpening = false;
+      }, 1650);
+    }
+
+    document.getElementById("openWishButton")
+      .addEventListener("click", openWishBox);
+
+    document.getElementById("envelope")
+      .addEventListener("click", openWishBox);
+
+    document.getElementById("envelope")
+      .addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openWishBox();
+        }
+      });
+
+    // REPLAY INVITATION
+    document.getElementById("replayButton")
+      .addEventListener("click", () => {
+
+        const envelope =
+          document.getElementById("envelope");
+
+        const button =
+          document.getElementById("openWishButton");
+
+        envelope.classList.remove("open");
+
+        button.disabled = false;
+        button.textContent = "OPEN THE COVER ♡";
+
+        isOpening = false;
+
+        showScreen("wishScreen");
+      });
+
+    // FALLING ROSE PETALS
+    function createPetal() {
+      if (document.hidden) return;
+
+      const petal = document.createElement("div");
+      petal.className = "petal";
+
+      const size = 14 + Math.random() * 12;
+
+      petal.style.width = size + "px";
+      petal.style.height = size * 1.3 + "px";
+      petal.style.left = Math.random() * 98 + "vw";
+
+      const colors = [
+        "#8e2335",
+        "#b54256",
+        "#a63347",
+        "#c25a6e"
+      ];
+
+      const color = colors[
+        Math.floor(Math.random() * colors.length)
+      ];
+
+      petal.innerHTML = `
+        <svg viewBox="0 0 24 32" fill="none">
+          <path
+            d="M12,0 C20,6 24,18 20,26 C16,32 8,32 3,26 C0,18 4,6 12,0 Z"
+            fill="${color}"
+          />
+        </svg>
+      `;
+
+      petal.style.setProperty(
+        "--drift",
+        Math.random() * 140 - 70 + "px"
+      );
+
+      const duration = 7 + Math.random() * 5;
+      petal.style.animationDuration = duration + "s";
+
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createPetal, 1100);
+  </script>
+</body>
+</html>
